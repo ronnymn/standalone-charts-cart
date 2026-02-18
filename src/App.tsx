@@ -113,9 +113,21 @@ export default function App() {
   function toggle(id: string) {
     setSelected((prev) => {
       const next = new Set(prev);
+      const hasOtherSelected = PRODUCTS.some(
+        (product) => product.id !== CORE_ID && next.has(product.id)
+      );
+
       if (next.has(id)) {
+        if (id === CORE_ID) {
+          if (hasOtherSelected) {
+            return prev;
+          }
+        }
         next.delete(id);
       } else {
+        if (id === CORE_ID && hasOtherSelected) {
+          return prev;
+        }
         next.add(id);
       }
       return next;
