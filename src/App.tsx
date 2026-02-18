@@ -84,6 +84,15 @@ export default function App() {
     setSelected((prev) => {
       const next = new Set(prev);
       if (next.has(id)) {
+        // Prevent deselecting Core if any other products are selected
+        if (id === "core") {
+          const hasOtherProducts = PRODUCTS.some(
+            (p) => p.id !== "core" && next.has(p.id)
+          );
+          if (hasOtherProducts) {
+            return prev; // Don't allow deselection
+          }
+        }
         next.delete(id);
         // If deselecting a core-inc product and no other core source remains, 
         // core itself also gets deselected if it was auto-implied
