@@ -173,30 +173,35 @@ export default function App() {
       <div className="flex flex-wrap gap-5 justify-center mb-10">
         {PRODUCTS.map((product) => {
           const isSelected = selected.has(product.id);
-          const isAutoSelected = product.id === CORE_ID && coreIsCovered && !selected.has(CORE_ID);
+          // Check if another product that includes Core is selected (making Core redundant)
+          const anotherCoreProductSelected = PRODUCTS.some(
+            (p) => p.id !== CORE_ID && p.includesCore && selected.has(p.id)
+          );
+          // Core should look disabled when another core-including product is selected
+          const isCoreRedundant = product.id === CORE_ID && anotherCoreProductSelected;
           const effectivePrice = getEffectivePrice(product);
           const isDiscounted =
             product.id !== CORE_ID &&
             effectivePrice !== null &&
             effectivePrice < product.basePrice;
-          const active = isSelected || isAutoSelected;
+          const active = isSelected || isCoreRedundant;
 
           return (
             <button
               key={product.id}
               onClick={() => toggle(product.id)}
-              disabled={isAutoSelected}
+              disabled={isCoreRedundant}
               className={`
-                relative w-40 rounded-2xl border-2 p-5 text-left transition-all duration-200
-                ${isAutoSelected
+                relative w-40 rounded-2xl border-2 p-5 text-left transition-all duration-200 group
+                ${isCoreRedundant
                   ? "border-gray-300 bg-gray-50 opacity-60 cursor-not-allowed"
                   : active
                     ? "border-blue-500 bg-blue-50 shadow-md cursor-pointer"
                     : "border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm cursor-pointer"}
               `}
             >
-              {/* Diagonal stripes overlay when active */}
-              {active && (
+              {/* Diagonal stripes overlay only for Core when redundant */}
+              {isCoreRedundant && (
                 <div
                   className="absolute inset-0 rounded-2xl opacity-10 pointer-events-none"
                   style={{
@@ -206,7 +211,7 @@ export default function App() {
                   }}
                 />
               )}
-
+              
               <div className="relative z-10">
                 <div className="text-xs text-gray-400 font-medium mb-0.5 h-4">
                   {product.subtitle || ""}
@@ -214,7 +219,7 @@ export default function App() {
                 <div className="text-lg font-bold text-gray-800 mb-4">{product.name}</div>
 
                 <div className="mb-4">
-                  {product.id === CORE_ID && isAutoSelected ? (
+                  {product.id === CORE_ID && isCoreRedundant ? (
                     <div className="flex items-baseline gap-1.5">
                       <span className="text-xl font-bold line-through text-gray-400">${product.basePrice}</span>
                       <span className="text-sm text-green-600 font-semibold">Included</span>
