@@ -26,7 +26,7 @@ const PRODUCTS: Product[] = [
   {
     id: "stock",
     name: "Stock",
-    subtitle: "included",
+    subtitle: "core incl.",
     basePrice: 370,
     addonPrice: 185,
     includesCore: true,
@@ -35,7 +35,7 @@ const PRODUCTS: Product[] = [
   {
     id: "maps",
     name: "Maps",
-    subtitle: "included",
+    subtitle: "core incl.",
     basePrice: 250,
     addonPrice: 65,
     includesCore: true,
@@ -44,7 +44,7 @@ const PRODUCTS: Product[] = [
   {
     id: "gantt",
     name: "Gantt",
-    subtitle: "included",
+    subtitle: "core incl.",
     basePrice: 222,
     addonPrice: 37,
     includesCore: true,
@@ -208,10 +208,10 @@ export default function App() {
               )}
 
               <div className="relative z-10">
-                <div className="text-xs text-gray-400 font-medium mb-0.5 h-4">
+                <div className="text-lg font-bold text-gray-800 mb-0.5">{product.name}</div>
+                <div className="text-xs text-gray-400 font-medium mb-4 h-4">
                   {product.subtitle || ""}
                 </div>
-                <div className="text-lg font-bold text-gray-800 mb-4">{product.name}</div>
 
                 <div className="mb-4">
                   {product.id === CORE_ID && isAutoSelected ? (
