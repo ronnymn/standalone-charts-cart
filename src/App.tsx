@@ -26,7 +26,7 @@ const PRODUCTS: Product[] = [
   {
     id: "stock",
     name: "Stock",
-    subtitle: "core inc.",
+    subtitle: "incl.",
     basePrice: 370,
     addonPrice: 185,
     includesCore: true,
@@ -35,7 +35,7 @@ const PRODUCTS: Product[] = [
   {
     id: "maps",
     name: "Maps",
-    subtitle: "core inc.",
+    subtitle: "incl.",
     basePrice: 250,
     addonPrice: 65,
     includesCore: true,
@@ -44,7 +44,7 @@ const PRODUCTS: Product[] = [
   {
     id: "gantt",
     name: "Gantt",
-    subtitle: "core inc.",
+    subtitle: "incl.",
     basePrice: 222,
     addonPrice: 37,
     includesCore: true,
