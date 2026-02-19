@@ -180,16 +180,15 @@ export default function App() {
             effectivePrice !== null &&
             effectivePrice < product.basePrice;
           const active = isSelected || isAutoSelected;
-          const isDisabled = isAutoSelected;
 
           return (
             <button
               key={product.id}
               onClick={() => toggle(product.id)}
-              disabled={isDisabled}
+              disabled={isAutoSelected}
               className={`
                 relative w-40 rounded-2xl border-2 p-5 text-left transition-all duration-200
-                ${isDisabled
+                ${isAutoSelected
                   ? "border-gray-300 bg-gray-50 opacity-60 cursor-not-allowed"
                   : active
                     ? "border-blue-500 bg-blue-50 shadow-md cursor-pointer"
