@@ -194,7 +194,7 @@ export default function App() {
               className={`
                 relative w-40 rounded-2xl border-2 p-5 text-left transition-all duration-200 group
                 ${isCoreRedundant
-                  ? "border-gray-300 bg-gray-50 opacity-60 cursor-not-allowed"
+                  ? "border-gray-300 bg-gray-50 opacity-90 cursor-not-allowed"
                   : active
                     ? "border-blue-500 bg-blue-50 shadow-md cursor-pointer"
                     : "border-gray-200 bg-white hover:border-blue-300 hover:shadow-sm cursor-pointer"}
@@ -207,7 +207,7 @@ export default function App() {
                   style={{
                     backgroundImage:
                       "repeating-linear-gradient(-45deg, #3b82f6 0, #3b82f6 1px, transparent 0, transparent 50%)",
-                    backgroundSize: "8px 8px",
+                    backgroundSize: "16px 16px",
                   }}
                 />
               )}
@@ -222,7 +222,7 @@ export default function App() {
                   {product.id === CORE_ID && isCoreRedundant ? (
                     <div className="flex items-baseline gap-1.5">
                       <span className="text-xl font-bold line-through text-gray-400">${product.basePrice}</span>
-                      <span className="text-sm text-green-600 font-semibold">Included</span>
+                      <span className="text-sm text-green-600 font-semibold opacity-100" style={{ opacity: 1 }}>Included</span>
                     </div>
                   ) : isDiscounted ? (
                     <div className="flex items-baseline gap-1.5">
