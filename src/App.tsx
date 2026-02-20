@@ -26,7 +26,7 @@ const PRODUCTS: Product[] = [
   {
     id: "stock",
     name: "Stock",
-    subtitle: "core inc.",
+    subtitle: "core included",
     basePrice: 370,
     addonPrice: 185,
     includesCore: true,
@@ -35,7 +35,7 @@ const PRODUCTS: Product[] = [
   {
     id: "maps",
     name: "Maps",
-    subtitle: "core inc.",
+    subtitle: "core included",
     basePrice: 250,
     addonPrice: 65,
     includesCore: true,
@@ -44,7 +44,7 @@ const PRODUCTS: Product[] = [
   {
     id: "gantt",
     name: "Gantt",
-    subtitle: "core inc.",
+    subtitle: "core included",
     basePrice: 222,
     addonPrice: 37,
     includesCore: true,
@@ -71,7 +71,7 @@ export default function App() {
   const selected = selectionState.selected;
   const selectionOrder = selectionState.order;
 
-  // Core is covered if "core" is selected OR any "core inc." product is selected
+  // Core is covered if "core" is selected OR any "core included" product is selected
   const coreIsCovered = useMemo(() => {
     return (
       selected.has(CORE_ID) ||
